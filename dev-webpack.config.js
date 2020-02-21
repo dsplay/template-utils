@@ -1,6 +1,9 @@
 const path = require('path');
 
-module.exports = {
+module.exports = [
+  'source-map'
+].map(devtool => ({
+  mode: 'development',
   entry: './src/lib/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -8,4 +11,8 @@ module.exports = {
     library: 'dsplayTemplateUtils',
     // libraryTarget: 'umd',
   },
-};
+  devtool,
+  optimization: {
+    runtimeChunk: true,
+  },
+}));
